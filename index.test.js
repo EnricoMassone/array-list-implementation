@@ -99,3 +99,66 @@ test("Reading an item having an index greater than length returns undefined", ()
   // ASSERT
   assert.isUndefined(item);
 });
+
+test("Getting from an empty array list returns undefined", () => {
+  // ARRANGE
+  const arrayList = new ArrayList();
+
+  // ACT
+  const item1 = arrayList.get(-1);
+  const item2 = arrayList.get(0);
+  const item3 = arrayList.get(1);
+
+  // ASSERT
+  assert.isUndefined(item1);
+  assert.isUndefined(item2);
+  assert.isUndefined(item3);
+});
+
+test("Calling get by passing a non integer parameter throws a TypeError", () => {
+  // ARRANGE
+  const arrayList = new ArrayList();
+  arrayList.push("foo");
+  arrayList.push("bar");
+
+  // ACT
+  try {
+    arrayList.get("not an integer....");
+  } catch (error) {
+    assert.exists(error);
+    assert.instanceOf(error, TypeError);
+    return;
+  }
+
+  throw new Error("Should not reach here");
+});
+
+test("Calling pop on an empty array returns undefined", () => {
+  // ARRANGE
+  const arrayList = new ArrayList();
+
+  // ACT
+  const item = arrayList.pop();
+
+  // ASSERT
+  assert.isUndefined(item);
+  assert.strictEqual(arrayList.length, 0);
+});
+
+test("Calling pop removes only the last item in the array", () => {
+  // ARRANGE
+  const arrayList = new ArrayList();
+  arrayList.push("item");
+  arrayList.push(true);
+  arrayList.push(13);
+
+  // ACT
+  const item = arrayList.pop();
+
+  // ASSERT
+  assert.strictEqual(item, 13);
+  assert.strictEqual(arrayList.length, 2);
+  assert.strictEqual(arrayList.get(0), "item");
+  assert.strictEqual(arrayList.get(1), true);
+  assert.isUndefined(arrayList.get(2));
+});

@@ -5,15 +5,33 @@ class ArrayList {
   }
 
   push(value) {
-    throw new Error("Not implemented");
+    this._data[this.length] = value;
+    this.length++;
   }
 
   pop() {
-    throw new Error("Not implemented");
+    if (this.length === 0) {
+      return undefined;
+    }
+
+    const temp = this._data[this.length - 1];
+    delete this._data[this.length - 1];
+
+    this.length--;
+
+    return temp;
   }
 
   get(index) {
-    throw new Error("Not implemented");
+    if (!Number.isInteger(index)) {
+      throw new TypeError("Index must be an integer number");
+    }
+
+    if (index < 0 || index >= this.length) {
+      return undefined;
+    }
+
+    return this._data[index];
   }
 
   delete(index) {
