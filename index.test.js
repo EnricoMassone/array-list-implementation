@@ -162,3 +162,134 @@ test("Calling pop removes only the last item in the array", () => {
   assert.strictEqual(arrayList.get(1), true);
   assert.isUndefined(arrayList.get(2));
 });
+
+test("Deleting item with index less than zero does nothing", () => {
+  // ARRANGE
+  const arrayList = new ArrayList();
+  arrayList.push("item");
+  arrayList.push(true);
+  arrayList.push(13);
+
+  // ACT
+  const result = arrayList.delete(-1);
+
+  // ASSERT
+  assert.isUndefined(result);
+
+  assert.strictEqual(arrayList.length, 3);
+  assert.strictEqual(arrayList.get(0), "item");
+  assert.strictEqual(arrayList.get(1), true);
+  assert.strictEqual(arrayList.get(2), 13);
+});
+
+test("Deleting item with index equal to length does nothing", () => {
+  // ARRANGE
+  const arrayList = new ArrayList();
+  arrayList.push("item");
+  arrayList.push(true);
+  arrayList.push(13);
+
+  // ACT
+  const result = arrayList.delete(3);
+
+  // ASSERT
+  assert.isUndefined(result);
+
+  assert.strictEqual(arrayList.length, 3);
+  assert.strictEqual(arrayList.get(0), "item");
+  assert.strictEqual(arrayList.get(1), true);
+  assert.strictEqual(arrayList.get(2), 13);
+});
+
+test("Deleting item with index greater than length does nothing", () => {
+  // ARRANGE
+  const arrayList = new ArrayList();
+  arrayList.push("item");
+  arrayList.push(true);
+  arrayList.push(13);
+
+  // ACT
+  const result = arrayList.delete(4);
+
+  // ASSERT
+  assert.isUndefined(result);
+
+  assert.strictEqual(arrayList.length, 3);
+  assert.strictEqual(arrayList.get(0), "item");
+  assert.strictEqual(arrayList.get(1), true);
+  assert.strictEqual(arrayList.get(2), 13);
+});
+
+test("Deleting the only item in one item array empties the array", () => {
+  // ARRANGE
+  const arrayList = new ArrayList();
+  arrayList.push("item");
+
+  // ACT
+  const result = arrayList.delete(0);
+
+  // ASSERT
+  assert.strictEqual(result, "item");
+
+  assert.strictEqual(arrayList.length, 0);
+  assert.isUndefined(arrayList.get(0));
+});
+
+test("It is possible to delete the first item", () => {
+  // ARRANGE
+  const arrayList = new ArrayList();
+  arrayList.push("item");
+  arrayList.push(true);
+  arrayList.push(13);
+
+  // ACT
+  const result = arrayList.delete(0);
+
+  // ASSERT
+  assert.strictEqual(result, "item");
+
+  assert.strictEqual(arrayList.length, 2);
+  assert.strictEqual(arrayList.get(0), true);
+  assert.strictEqual(arrayList.get(1), 13);
+  assert.isUndefined(arrayList.get(2));
+});
+
+test("It is possible to delete the last item", () => {
+  // ARRANGE
+  const arrayList = new ArrayList();
+  arrayList.push("item");
+  arrayList.push(true);
+  arrayList.push(13);
+
+  // ACT
+  const result = arrayList.delete(2);
+
+  // ASSERT
+  assert.strictEqual(result, 13);
+
+  assert.strictEqual(arrayList.length, 2);
+  assert.strictEqual(arrayList.get(0), "item");
+  assert.strictEqual(arrayList.get(1), true);
+  assert.isUndefined(arrayList.get(2));
+});
+
+test("It is possible to delete an item in the middle", () => {
+  // ARRANGE
+  const arrayList = new ArrayList();
+  arrayList.push("item");
+  arrayList.push(true);
+  arrayList.push(13);
+  arrayList.push("bar");
+
+  // ACT
+  const result = arrayList.delete(1);
+
+  // ASSERT
+  assert.strictEqual(result, true);
+
+  assert.strictEqual(arrayList.length, 3);
+  assert.strictEqual(arrayList.get(0), "item");
+  assert.strictEqual(arrayList.get(1), 13);
+  assert.strictEqual(arrayList.get(2), "bar");
+  assert.isUndefined(arrayList.get(3));
+});
