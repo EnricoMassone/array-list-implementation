@@ -1,0 +1,24 @@
+{
+  "name": "array-list-implementation",
+  "version": "1.0.0",
+  "description": "Javascript implementation of a resizable array",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnricoMassoneDeltatre/array-list-implementation.git"
+  },
+  "keywords": [
+    "Javascritp",
+    "ES6",
+    "data-structure"
+  ],
+  "author": "Enrico Massone",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EnricoMassoneDeltatre/array-list-implementation/issues"
+  },
+  "homepage": "https://github.com/EnricoMassoneDeltatre/array-list-implementation#readme"
+}
